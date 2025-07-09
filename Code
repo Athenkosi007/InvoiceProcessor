@@ -1,0 +1,55 @@
+using System;
+
+namespace SRPExample
+{
+    // Class 1: Invoice holds data
+    public class Invoice
+    {
+        public int InvoiceId { get; set; }
+        public string CustomerName { get; set; }
+        public double Amount { get; set; }
+    }
+
+    // Class 2: Responsible for processing the invoice
+    public class InvoiceProcessor
+    {
+        public void Process(Invoice invoice)
+        {
+            // Business logic
+            Console.WriteLine($"Processing invoice #{invoice.InvoiceId} for {invoice.CustomerName}");
+            // ...simulate save, send to API, etc.
+        }
+    }
+
+    // Class 3: Responsible for reporting the invoice
+    public class InvoiceReporter
+    {
+        public void Report(Invoice invoice)
+        {
+            Console.WriteLine($"Invoice Report\n--------------");
+            Console.WriteLine($"ID      : {invoice.InvoiceId}");
+            Console.WriteLine($"Customer: {invoice.CustomerName}");
+            Console.WriteLine($"Amount  : ${invoice.Amount}");
+        }
+    }
+
+    // Program Runner
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var invoice = new Invoice
+            {
+                InvoiceId = 1001,
+                CustomerName = "Alice Brown",
+                Amount = 250.75
+            };
+
+            var processor = new InvoiceProcessor();
+            var reporter = new InvoiceReporter();
+
+            processor.Process(invoice);
+            reporter.Report(invoice);
+        }
+    }
+}
